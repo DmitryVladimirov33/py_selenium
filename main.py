@@ -1,6 +1,8 @@
 import pytest
 from selenium.webdriver.common.by import By
 import time
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 url = 'https://google.com'
 
@@ -31,7 +33,8 @@ def test_google_search(browser, open_form):
         for element in elements:
             element.send_keys('Погода в Москве')
         time.sleep(1)
-        button = browser.find_element(By.CSS_SELECTOR, "input.gNO89b")
+        button = WebDriverWait(browser, 10).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, "input.gNO89b")))
         button.click()
         time.sleep(2)
         print("Тест пройден успешно!")
