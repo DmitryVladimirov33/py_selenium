@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def browser():
     driver = webdriver.Chrome()
     driver.implicitly_wait(10)
