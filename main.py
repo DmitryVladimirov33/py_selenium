@@ -34,7 +34,7 @@ def test_google_search(browser, open_form):
             element.send_keys('Погода в Москве')
         time.sleep(1)
         button = WebDriverWait(browser, 10).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, "input.gNO89b")))
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "input.gNO89b")))
         button.click()
         time.sleep(2)
         print("Тест пройден успешно!")
