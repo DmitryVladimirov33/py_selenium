@@ -13,9 +13,10 @@ async def read_root():
             <title>Приветствие</title>
         </head>
         <body>
-            <h1>Введите ваше имя</h1>
+            <h1>Введите ваше имя и фамилию</h1>
             <form action="/greet" method="post">
                 <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="text" name="surname" placeholder="Ваша фамилия" required>
                 <button type="submit">Приветствовать</button>
             </form>
         </body>
@@ -24,8 +25,8 @@ async def read_root():
 
 
 @app.post("/greet", response_class=HTMLResponse)
-async def greet(name: str = Form(...)):
-    return f"<h1>Привет, {name}!</h1> <a href='/'>Назад</a>"
+async def greet(name: str = Form(...), surname: str = Form(...)):
+    return f"<h1>Привет, {name} {surname}!</h1> <a href='/'>Назад</a>"
 
 
 if __name__ == "__main__":

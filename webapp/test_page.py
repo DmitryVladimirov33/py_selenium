@@ -23,14 +23,15 @@ def test_google_title(browser, open_form):
 
 
 def test_google_search(browser, open_form):
-    elements = browser.find_elements(By.CSS_SELECTOR, "input[type=text]")
-    for element in elements:
-        element.send_keys('Пользователь')
+    element = browser.find_element(By.CSS_SELECTOR, "body > form > input[type=text]:nth-child(1)")
+    element.send_keys('Иван')
+    element1 = browser.find_element(By.CSS_SELECTOR, "body > form > input[type=text]:nth-child(2)")
+    element1.send_keys('Иванов')
     time.sleep(1)
     button = WebDriverWait(browser, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "button")))
     button.click()
     time.sleep(2)
     h1_element = browser.find_element(By.CSS_SELECTOR, "body > h1")
-    assert h1_element.text == "Привет, Пользователь!"
+    assert h1_element.text == "Привет, Иван Иванов!"
     print("Тест пройден успешно!")
